@@ -36,14 +36,14 @@ def introduction():
     st_lottie(ecg_gfx, height=250)
 
     st.title("Introduction")
-   introduction_text = """
+    introduction_text = """
     - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
     - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
     - Early arrhythmia detection is pivotal for timely treatment
     - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
     """
     st.write(introduction_text)
-   st.write("## Project Methodology")
+    st.write("## Project Methodology")
         # Step 1
     st.subheader("Step 1: Preprocessing and Feature Engineering")
     st.write("""
