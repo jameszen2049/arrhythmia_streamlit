@@ -9,7 +9,7 @@ from streamlit_lottie import st_lottie
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
-from sklearn.metrics import accuracy_score, recall_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, recall_score, classification_report, confusion_matrix, roc_auc_score
 import altair as alt 
 import networkx as nx
 import xgboost as xgb
@@ -315,7 +315,6 @@ def uci_bilkent_dataset():
             if hasattr(models[selected_model], 'predict'):
                 st.subheader('Classification Report:')
                 report = classification_report(target_values, prediction)
-#                st.text(report)
 
                 # Parse the classification report into a DataFrame
                 report_data = []
@@ -328,12 +327,9 @@ def uci_bilkent_dataset():
                         recall = float(row[2])
                         f1_score = float(row[3])
                         support = int(row[4])
-                        report_data.append([class_name, precision, recall, f1_score, support])
+                        report_data.append([class_name, precision, recall, f1_score])
 
-                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score', 'Support'])
-
-                # Display classification report as a table
-#                st.write(report_df, index=False)
+                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score'])
 
                 # Convert DataFrame to HTML without index
                 report_html = report_df.to_html(index=False)
@@ -548,9 +544,9 @@ def mit_bih_dataset():
                         recall = float(row[2])
                         f1_score = float(row[3])
                         support = int(row[4])
-                        report_data.append([class_name, precision, recall, f1_score, support])
+                        report_data.append([class_name, precision, recall, f1_score])
 
-                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score', 'Support'])
+                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score'])
 
                 # Display classification report as a table
 #                st.write(report_df, index=False)
