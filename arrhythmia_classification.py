@@ -107,7 +107,7 @@ def load_deep_learning_models():
 
 def uci_bilkent_dataset():
     st.title("UCI-Bilkent Dataset")
-    selected_page = st.sidebar.selectbox("Select Page", ["Exploration", "Preprocessing and Feature Engineering", "Modelling"])
+    selected_page = st.sidebar.selectbox("Select Page", ["Exploration", "Feature Engineering", "Modelling"])
     # Read UCI-Bilkent Dataset
     df = pd.read_csv('arrhythmia.csv')
     input_data = pd.read_csv('uci_x_test.csv')
@@ -166,7 +166,7 @@ def uci_bilkent_dataset():
         plt.title('Distribution of Classes')
         st.pyplot(plt.gcf())
 
-    elif selected_page == "Preprocessing and Feature Engineering":
+    elif selected_page == "Feature Engineering":
         st.header("Feature Engineering")
     
         # Load data
@@ -235,9 +235,49 @@ def uci_bilkent_dataset():
         }
         hyperparameter_table = pd.DataFrame(data)
         st.table(hyperparameter_table)
+        ####
+        st.write("### Model Performance")
+        models = ["Logistic Regression", "Random Forest", "SVC", "Elastic Net", "Gradient Boosting", "Ada Boosting", "XG Boosting"]
+        best_parameters = ["C: 0.0032; solver: liblinear", 
+                           "max_features: sqrt; min_samples_leaf: 3; n_estimators: 100",
+                           "C: 0.01; kernel: linear", 
+                           "C: 0.1; class_weight: balanced; fit_intercept: True; l1_ratio: 0.9; max_iter: 200; penalty: elasticnet; solver: saga; tol: 0.0001",
+                           "learning_rate: 0.2; max_depth: 3; n_estimators: 100",
+                           "base_estimator__max_depth: 2; base_estimator__min_samples_split: 2; learning_rate: 0.05; n_estimators: 150",
+                           "learning_rate: 0.01; max_depth: 3; n_estimators: 200"]
+        train_accuracy = [0.80, 0.99, 0.81, 0.81, 0.82, 0.82, 0.82]
+        test_accuracy = [0.76, 0.71, 0.73, 0.76, 0.73, 0.73, 0.73]
+        recall = [0.55, 0.60, 0.60, 0.60, 0.62, 0.53, 0.66]
 
         # Load multiple models
         models = load_uci_models()
+
+        ## Model Results Comparisons ##
+                
+        st.write('### Model Performance Comparison')
+        # Barplot with selectbox 
+        bar_width = 0.15
+        index = np.arange(len(models))
+        selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
+        fig, ax = plt.subplots(figsize=(12, 8))
+        model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+        #colors = ['lightblue', 'lightgreen', 'lightcoral', 'yellow']
+        for i, model in enumerate(models):
+            alpha = 1 if i == model_index else 0.4
+            ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
+            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
+            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
+#            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
+        ax.set_xlabel('Model')
+        ax.set_ylabel('Scores')
+        ax.set_title('Comparison of Model Performances')
+        ax.set_xticks(index)    
+        ax.set_xticklabels(list(models.keys()))  # Use the keys of the dictionary
+        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall'], bbox_to_anchor=(1, 1), loc='upper left')
+        st.pyplot(fig)
+
+        ## Individual Model Results ##
 
         st.title('Model Results')
 
