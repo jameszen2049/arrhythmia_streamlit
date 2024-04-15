@@ -245,9 +245,9 @@ def uci_bilkent_dataset():
                            "learning_rate: 0.2; max_depth: 3; n_estimators: 100",
                            "base_estimator__max_depth: 2; base_estimator__min_samples_split: 2; learning_rate: 0.05; n_estimators: 150",
                            "learning_rate: 0.01; max_depth: 3; n_estimators: 200"]
-        train_accuracy = [0.80, 0.99, 0.81, 0.81, 0.82, 0.82, 0.82]
-        test_accuracy = [0.76, 0.71, 0.73, 0.76, 0.73, 0.73, 0.73]
-        recall = [0.55, 0.60, 0.60, 0.60, 0.62, 0.53, 0.66]
+        train_accuracy = [0.81, 0.98, 0.81, 0.82, 1.00, 0.73, 1.00]
+        test_accuracy = [0.74, 0.73, 0.76, 0.73, 0.73, 0.64, 0.74]
+        test_recall = [0.55, 0.60, 0.60, 0.60, 0.62, 0.53, 0.66]
 
         # Load multiple models
         models = load_uci_models()
@@ -255,7 +255,7 @@ def uci_bilkent_dataset():
         ## Model Results Comparisons ##
                 
         st.write('### Model Performance Comparison')
-        # Barplot with selectbox 
+        # Barplot with slider
         bar_width = 0.15
         index = np.arange(len(models))
         selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
@@ -267,7 +267,7 @@ def uci_bilkent_dataset():
             alpha = 1 if i == model_index else 0.4
             ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
             ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
-            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
+            ax.bar(index[i], test_recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
 #            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
         ax.set_xlabel('Model')
         ax.set_ylabel('Scores')
@@ -408,7 +408,7 @@ def mit_bih_dataset():
                    textcoords='offset points')
         plt.tight_layout()
         st.pyplot(plt)    
-        st.write("### Creation of binary target variable")
+        st.write("### Creation of Binary Target Variable")
         # Plot pie chart   
         label_counts = df['label'].value_counts(normalize=True)
         plt.figure(figsize=(6, 6))
@@ -416,7 +416,7 @@ def mit_bih_dataset():
         plt.title('Normal vs. Arrhythmia', fontsize=16)
         #st.pyplot(plt)
         ###
-        st.write("### Downsampling to address class imbalance")
+        st.write("### Downsampling to address Class Imbalance")
         st.write(f"Shape of the original dataset: {df.shape}")
         st.write(f"Shape of the downsampled dataset: {balanced_df.shape}")
         # Pie charts next to each other
@@ -573,16 +573,16 @@ def mit_bih_dataset():
             st.write('No model selected.')
 
     elif selected_page == "Deep Learning":
-        st.write("## Comparison of different Neural Network architectures for Arrhythmia Classification")
+        st.write("## Comparison of different Neural Network Architectures for Arrhythmia Classification")
         st.write('### Dense Neural Networks')
-        st.write("#### Confusion Matrices for DNNs with different activation functions")
+        st.write("#### Confusion Matrices for DNNs with different Activation Functions")
         image_path = "Figure_19.png"  
         image = open(image_path, 'rb').read()
         st.image(image, caption='', use_column_width=True)
         st.write("DNN with input dimensions (None, 32), three hidden dense layers of 10, 8, 6, and 3 neurons, (493 trainable parameters total), trained over 500 epochs with an adaptive Adam optimizer")
 
         st.write('### Artificial Neural Networks')
-        st.write("#### Confusion Matrices for ANNs with different activation functions")
+        st.write("#### Confusion Matrices for ANNs with different Activation Functions")
         image_path = "Figure_20.png"  
         image = open(image_path, 'rb').read()
         st.image(image, caption='', use_column_width=True)
