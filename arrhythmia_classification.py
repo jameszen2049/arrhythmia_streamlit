@@ -495,12 +495,15 @@ def mit_bih_dataset():
         image_path = "Figure_19.png"  
         image = open(image_path, 'rb').read()
         st.image(image, caption='', use_column_width=True)
+        st.write("DNN with input dimensions (None, 32), three hidden dense layers of 10, 8, 6, and 3 neurons, (493 trainable parameters total), trained over 500 epochs with an adaptive Adam optimizer")
 
         st.write('### Artificial Neural Networks')
         st.write("#### Confusion Matrices for ANNs with different activation functions")
         image_path = "Figure_20.png"  
         image = open(image_path, 'rb').read()
         st.image(image, caption='', use_column_width=True)
+        st.write("ANN with three hidden dense layers four neurons each, with a sigmoid activation function in the output layer for binary classification, trained over 500 epochs with adaptive Adam optimizer")
+
 
         st.write("### Precision-Recall Curves for DNN and ANN Trials")
         image_path = "Figure_22.png"  
