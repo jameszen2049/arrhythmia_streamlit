@@ -37,21 +37,31 @@ def introduction():
 
     st.title("Introduction")
     introduction_text = """
-    - Arrhythmia poses a significant challenge in cardiovascular medicine, marked by irregular heart rhythms with severe health implications like stroke and heart failure.
-    - Early arrhythmia detection is pivotal for timely treatment, motivating our model to promptly identify ECG abnormalities for swift healthcare interventions.
-    - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence, initially targeting atrial fibrillation and expanding to cover various arrhythmia types.
+    - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
+    - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
+    - Early arrhythmia detection is pivotal for timely treatment
+    - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
     """
     st.write(introduction_text)
     st.write("## Project Methodology")
         # Step 1
     st.subheader("Step 1: Preprocessing and Feature Engineering")
-    st.write("This step involves preprocessing the data, engineering features, and downsampling to handle class imbalance.")
+    st.write("""
+    - This involves preprocessing the data, engineering features, and downsampling to handle class imbalance
+    """)
     # Step 2
-    st.subheader("Step 2: Model selection")
-    st.write("In this step, we select baseline models and more sophisticated models such as bagging and boosting. We use techniques like GridsearchCV and Randomized Search for hyperparameter tuning. In addition, we apply Deep Learning models such as Dense Neural Networks and Artificial Neural Networks.")
+    st.subheader("Step 2: Model Selection")
+    st.write("""
+    - We select baseline models and more sophisticated models such as bagging and boosting
+    - We use techniques like GridsearchCV and Randomized Search for hyperparameter tuning 
+    - We construct deep learning models such as Dense Neural Networks and Artificial Neural Networks
+    """)
     # Step 3
-    st.subheader("Step 3: Performance evaluation")
-    st.write("This step involves systematically evaluating model performance based on metrics like accuracy and recall. A main focus is placed on the number of undetected arrhythmia cases as evident in number of false negatives.")
+    st.subheader("Step 3: Performance Evaluation")
+    st.write("""
+    - This involves systematically evaluating model performance based on metrics like accuracy and recall. 
+    - A main focus is placed on the number of undetected arrhythmia cases as evident in number of false negatives
+    """)
 
 # ---- Model Loading Function ----
 # Define a function to load the models
@@ -157,7 +167,7 @@ def uci_bilkent_dataset():
         st.pyplot(plt.gcf())
 
     elif selected_page == "Preprocessing and Feature Engineering":
-        st.write("## Preprocessing and Feature Engineering")
+        st.header("Feature Engineering")
     
         # Load data
         df = pd.read_csv('UCI-BILKENT_Arrhythmia_Dataset_preprocessed_cleaned_classes_label.csv', sep=',', index_col=0)
@@ -177,11 +187,11 @@ def uci_bilkent_dataset():
             return X_pca, pca.explained_variance_ratio_, pca.components_
 
         # Streamlit app
-        st.title("PCA Visualization")
+        st.subheader("PCA Visualization")
     
         # Slider for selecting number of PCA components
         st.write("Select the Number of PCA Components")
-        n_components = st.select_slider("Number of PCA Components", options=[30, 40, 50, 55, 60, 65, 70, 75, 78, 80, 85, 90, 95, 100])
+        n_components = st.select_slider("Number of PCA Components", options=[30, 40, 50, 60, 70, 78, 80, 90, 100])
 
         # Perform PCA
         X_pca, explained_variance_ratio, components = perform_pca(n_components)
