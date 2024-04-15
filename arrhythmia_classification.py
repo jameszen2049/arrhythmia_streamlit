@@ -388,7 +388,7 @@ def mit_bih_dataset():
                    textcoords='offset points')
         plt.tight_layout()
         st.pyplot(plt)    
-        st.write("### Creation of binary target variable")
+        st.write("### Creation of Binary Target Variable")
         # Plot pie chart   
         label_counts = df['label'].value_counts(normalize=True)
         plt.figure(figsize=(6, 6))
@@ -396,7 +396,7 @@ def mit_bih_dataset():
         plt.title('Normal vs. Arrhythmia', fontsize=16)
         #st.pyplot(plt)
         ###
-        st.write("### Downsampling to address class imbalance")
+        st.write("### Downsampling to address Class Imbalance")
         st.write(f"Shape of the original dataset: {df.shape}")
         st.write(f"Shape of the downsampled dataset: {balanced_df.shape}")
         # Pie charts next to each other
