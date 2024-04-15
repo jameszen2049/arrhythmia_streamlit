@@ -459,13 +459,13 @@ def mit_bih_dataset():
             ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
             ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
             ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
-            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
+#            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
         ax.set_xlabel('Model')
         ax.set_ylabel('Scores')
         ax.set_title('Comparison of Model Performances')
         ax.set_xticks(index)    
         ax.set_xticklabels(list(models.keys()))  # Use the keys of the dictionary
-        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall', 'Train Recall'], bbox_to_anchor=(1, 1), loc='upper left')
+        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall'], bbox_to_anchor=(1, 1), loc='upper left')
         st.pyplot(fig)
 
         st.write("### Comparison of Confusion Matrices")
