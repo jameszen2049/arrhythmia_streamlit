@@ -374,11 +374,10 @@ def mit_bih_dataset():
 #        st.write("## Systematic comparison of different Machine Learning Models for Arrhythmia Classification")
         st.write('### Hyperparameter space for Randomized Search ')
         data = {
-             "Model": ["Logistic Regression", "Random Forest", "Support Vector", "Elastic Net", "Gradient Boosting", "AdaBoost", "XGBoost"],
+             "Model": ["Logistic Regression", "Random Forest", "Elastic Net", "Gradient Boosting", "AdaBoost", "XGBoost"],
             "Hyperparameter Space": [
         "solver: [liblinear, lbfgs]; C: np.logspace(-4, 2, 9)",
         "n_estimators: [10, 50, 100, 250, 500, 1000]; min_samples_leaf: [1, 3, 5]; max_features: [sqrt, log2]",
-        "C: np.logspace(-4, 2, 9); kernel: [linear, rbf]",
         "C: np.logspace(-4, 2, 9); l1_ratio: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]",
         "n_estimators: [50, 100, 200]; learning_rate: [0.01, 0.1, 1.0]; max_depth: [3, 5, 7]",
         "n_estimators: [50, 100, 200]; learning_rate: [0.01, 0.1, 1.0]",
@@ -403,6 +402,38 @@ def mit_bih_dataset():
 
         # Load multiple models
         models = load_mit_models()
+
+        ## Model Results Comparisons ##
+                
+        st.write('### Model Performance Comparison')
+        # Barplot with selectbox 
+        bar_width = 0.15
+        index = np.arange(len(models))
+        selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
+        fig, ax = plt.subplots(figsize=(12, 8))
+        model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+        #colors = ['lightblue', 'lightgreen', 'lightcoral', 'yellow']
+        for i, model in enumerate(models):
+            alpha = 1 if i == model_index else 0.4
+            ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
+            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
+            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
+            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
+        ax.set_xlabel('Model')
+        ax.set_ylabel('Scores')
+        ax.set_title('Comparison of Model Performances')
+        ax.set_xticks(index)    
+        ax.set_xticklabels(list(models.keys()))  # Use the keys of the dictionary
+        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall', 'Train Recall'], bbox_to_anchor=(1, 1), loc='upper left')
+        st.pyplot(fig)
+
+        st.write("### Comparison of Confusion Matrices")
+        image_path = "Figure_18.png"  
+        image = open(image_path, 'rb').read()
+        st.image(image, caption='Overall, Gradient Boost shows the smallest number of false negative. ', use_column_width=True)  
+
+        ## Individual Model Results ##
 
         st.title('Model Results')
 
@@ -457,35 +488,6 @@ def mit_bih_dataset():
         else:
             st.write('No model selected.')
 
-        st.write('### Model Performance Comparison')
-        # Barplot with selectbox 
-        bar_width = 0.15
-        index = np.arange(len(models))
-        selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
-        fig, ax = plt.subplots(figsize=(12, 8))
-        model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
-        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
-        #colors = ['lightblue', 'lightgreen', 'lightcoral', 'yellow']
-        for i, model in enumerate(models):
-            alpha = 1 if i == model_index else 0.4
-            ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
-            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
-            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
-            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
-        ax.set_xlabel('Model')
-        ax.set_ylabel('Scores')
-        ax.set_title('Comparison of Model Performances')
-        ax.set_xticks(index)    
-        ax.set_xticklabels(list(models.keys()))  # Use the keys of the dictionary
-        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall', 'Train Recall'], bbox_to_anchor=(1, 1), loc='upper left')
-        st.pyplot(fig)
-
-        st.write("### Comparison of Confusion Matrices")
-        image_path = "Figure_18.png"  
-        image = open(image_path, 'rb').read()
-        st.image(image, caption='Overall, Gradient Boost shows the smallest number of false negative. ', use_column_width=True)  
-
-        
     elif selected_page == "Deep Learning":
         st.write("## Comparison of different Neural Network architectures for Arrhythmia Classification")
         st.write('### Dense Neural Networks')
