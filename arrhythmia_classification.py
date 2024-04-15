@@ -283,7 +283,7 @@ def uci_bilkent_dataset():
 
         train_data_size = len(df)
         test_data_size = len(input_data)
-        st.write("Size of Train Dataset:", train_data_size, '/ Size of Test Dataset:', test_data_size)
+        st.write('Size of Test Dataset:', test_data_size)
 
         # Model selection widget
         selected_model = st.selectbox('Select Model', list(models.keys()))
@@ -311,13 +311,37 @@ def uci_bilkent_dataset():
                 st.subheader('Model Performance Summary:')
                 st.write(f'Accuracy: {rounded_accuracy}')
 
-            # Display confusion matrix
+            # Display classification report
             if hasattr(models[selected_model], 'predict'):
-                # Display classification report
                 st.subheader('Classification Report:')
                 report = classification_report(target_values, prediction)
-                st.text(report)
+#                st.text(report)
 
+                # Parse the classification report into a DataFrame
+                report_data = []
+                lines = report.split('\n')
+                for line in lines[2:-5]:  # Skip the first two lines and last 5 lines
+                    row = line.split()
+                    if row:
+                        class_name = row[0]
+                        precision = float(row[1])
+                        recall = float(row[2])
+                        f1_score = float(row[3])
+                        support = int(row[4])
+                        report_data.append([class_name, precision, recall, f1_score, support])
+
+                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score', 'Support'])
+
+                # Display classification report as a table
+#                st.write(report_df, index=False)
+
+                # Convert DataFrame to HTML without index
+                report_html = report_df.to_html(index=False)
+
+                # Display classification report as a table without index
+                st.markdown(report_html, unsafe_allow_html=True)
+
+                # Create the Confusion Matrix
                 st.subheader('Confusion Matrix:')
                 cm = confusion_matrix(target_values, prediction)
 
@@ -479,7 +503,7 @@ def mit_bih_dataset():
 
         train_data_size = len(df)
         test_data_size = len(input_data)
-        st.write("Size of Train Dataset:", train_data_size, '/ Size of Test Dataset:', test_data_size)
+        st.write('Size of Test Dataset:', test_data_size)
 
         # Model selection widget
         selected_model = st.selectbox('Select Model', list(models.keys()))
@@ -507,13 +531,37 @@ def mit_bih_dataset():
                 st.subheader('Model Performance Summary:')
                 st.write(f'Accuracy: {rounded_accuracy}')
 
-            # Display confusion matrix
+            # Display classification report
             if hasattr(models[selected_model], 'predict'):
-                # Display classification report
                 st.subheader('Classification Report:')
                 report = classification_report(target_values, prediction)
-                st.text(report)
+#                st.text(report)
 
+                # Parse the classification report into a DataFrame
+                report_data = []
+                lines = report.split('\n')
+                for line in lines[2:-5]:  # Skip the first two lines and last 5 lines
+                    row = line.split()
+                    if row:
+                        class_name = row[0]
+                        precision = float(row[1])
+                        recall = float(row[2])
+                        f1_score = float(row[3])
+                        support = int(row[4])
+                        report_data.append([class_name, precision, recall, f1_score, support])
+
+                report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-Score', 'Support'])
+
+                # Display classification report as a table
+#                st.write(report_df, index=False)
+
+                # Convert DataFrame to HTML without index
+                report_html = report_df.to_html(index=False)
+
+                # Display classification report as a table without index
+                st.markdown(report_html, unsafe_allow_html=True)
+
+                # Create the Confusion Matrix
                 st.subheader('Confusion Matrix:')
                 cm = confusion_matrix(target_values, prediction)
 
