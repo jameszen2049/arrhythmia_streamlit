@@ -277,6 +277,25 @@ def uci_bilkent_dataset():
         ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall'], bbox_to_anchor=(1, 1), loc='upper left')
         st.pyplot(fig)
 
+         # Define the test metrics
+        test_metrics = {
+            'Accuracy': 0.74,
+            'Precision': 0.79,
+            'Recall': 0.66,
+            'F1-score': 0.72,
+            'Auroc-score': 0.74
+        }
+
+        # Display the classification report
+        st.header('Best Performing Model (XGBoost)')
+        
+        # Create a DataFrame for the classification report
+        classification_report_df = pd.DataFrame(test_metrics, index=['XGBoost Model'])
+
+        # Display the classification report DataFrame
+        st.write('Classification Report:')
+        st.write(classification_report_df)
+        
 # ---- MIT BIH Dataset ----
 
 def mit_bih_dataset():
