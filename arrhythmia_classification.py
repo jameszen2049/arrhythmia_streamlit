@@ -629,8 +629,8 @@ def main():
     page = st.sidebar.radio("Contents", ["Introduction", "UCI-Bilkent Dataset", "MIT-BIH Dataset", "Conclusions"])
     if page == "Introduction":
         introduction()
-    elif page == "UCI-Bilkent Dataset":
-        uci_bilkent_dataset()
+#    elif page == "UCI-Bilkent Dataset":
+#        uci_bilkent_dataset()
     elif page == "MIT-BIH Dataset":
         mit_bih_dataset()
     elif page == "Conclusions":
