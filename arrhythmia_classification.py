@@ -645,9 +645,9 @@ def explorations():
     """
     st.write(explorations_text)
     
-def relevance():
+def references():
     st.header("References")
-    relevance_text = """
+    references_text = """
     - Das, M. K., & Ari, S. (2014). ECG Beats Classification Using Mixture of Features. International Scholarly Research Notices, 2014, 178436. https://doi.org/10.1155/2014/178436
     - Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., & Stanley, H. E. (2000). PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation, 101(23), e215. https://doi.org/10.1161/01.cir.101.23.e215
     - Guvenir, H. A., Acar, B., Demiroz, G., & Cekin, A. (1997). A Supervised Machine Learning Algorithm for Arrhythmia Analysis. Proceedings of the Computers in Cardiology, 433-436.
@@ -662,7 +662,7 @@ def relevance():
     - Tan, K. F., Chan, K. L., & Choi, K. (2000). Detection of the QRS complex, P wave and T wave in electrocardiogram. 2000 First International Conference Advances in Medical Signal and Information Processing (IEE Conf. Publ. No. 476), 41-47.
     - Wang, D., Zhang, L., Wang, Z.-Y., Zhang, Z.-Y., & Wang, Y. (2017). The missed diagnosis of aortic dissection in patients with acute myocardial infarction: A disastrous event. Journal of Thoracic Disease, 9(7), E636-E639. https://doi.org/10.21037/jtd.2017.06.103
     """
-    st.write(relevance_text)
+    st.write(references_text)
     
 def conclusions():
     st.title("Conclusions")
@@ -671,8 +671,8 @@ def conclusions():
         summary()
     elif selected_page == "Future Explorations":
         explorations()
-    elif selected_page == "Relevance":
-        relevance()
+    elif selected_page == "References":
+        references()
         
 
 # ---- Main / Sidebar ----
