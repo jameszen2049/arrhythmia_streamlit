@@ -453,7 +453,7 @@ def mit_bih_dataset():
         ax.set_xticklabels(list(models.keys()))
         ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall'], bbox_to_anchor=(1, 1), loc='upper left')
 
-        t.pyplot(fig)
+        st.pyplot(fig)
 
         st.write("### Comparison of Confusion Matrices")
         image_path = "Figure_18.png"  
