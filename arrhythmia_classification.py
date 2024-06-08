@@ -443,7 +443,7 @@ def mit_bih_dataset():
         for i, model in enumerate(models):
             ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=1)
             ax.bar(index[i], test_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=1)
-            x.bar(index[i] + bar_width, recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=1)
+            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=1)
 
         ax.set_xlabel('Model')
         ax.set_ylabel('Scores')
