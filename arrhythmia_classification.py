@@ -336,15 +336,16 @@ def mit_bih_dataset():
     if selected_page == "Exploration and Preprocessing":
         st.write("## Exploratory Data Analysis and Preprocessing")
         st.write("### Data Exploration")
-        introduction_text = """
-    - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
-    - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
-    - Early arrhythmia detection is pivotal for timely treatment
-    - Recent advancements in machine learning (ML) offer a promising future for automating arrhythmia detection through ECG analysis (Mincholé et al., 2019; Huda et al., 2020; Sakib, Fouda & Fadlullah, 2021)
-    - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
-    - Early detection is crucial for timely intervention and treatment (Zhang et al., 2017)
-    - We also aim for scalability and generalizability, contributing to a framework that can be effectively implemented across various healthcare settings and populations
-    """
+        exploration_text = """
+        - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
+        - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
+        - Early arrhythmia detection is pivotal for timely treatment
+        - Recent advancements in machine learning (ML) offer a promising future for automating arrhythmia detection through ECG analysis (Mincholé et al., 2019; Huda et al., 2020; Sakib, Fouda & Fadlullah, 2021)
+        - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
+        - Early detection is crucial for timely intervention and treatment (Zhang et al., 2017)
+        - We also aim for scalability and generalizability, contributing to a framework that can be effectively implemented across various healthcare settings and populations
+        """
+        st.write(exploration_text)
         st.dataframe(df.head(10))
         st.write(df.shape)
         st.dataframe(df.describe())
