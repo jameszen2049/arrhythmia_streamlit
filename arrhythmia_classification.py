@@ -625,8 +625,8 @@ def conclusions():
 # ---- Main / Sidebar ----
 
 def main():
-    st.sidebar.title("Arrhythmia Classification Experiments on the MIT-NIH Dataset")
-    page = st.sidebar.radio("Contents", ["Introduction", "MIT-BIH Dataset", "Conclusions"])
+    st.sidebar.title("Arrhythmia Classification Experiments on the MIT-BIH Dataset")
+    page = st.sidebar.radio("Comparisons of various machine learning and deep learning algorithms, Spring 2024", ["Introduction", "MIT-BIH Dataset", "Conclusions"])
     if page == "Introduction":
         introduction()
 #    elif page == "UCI-Bilkent Dataset":
