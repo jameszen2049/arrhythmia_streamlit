@@ -373,6 +373,14 @@ def mit_bih_dataset():
         #st.pyplot(plt)
         ###
         st.write("### Downsampling to address Class Imbalance")
+        downsampling_text = """
+        - Before data augmentation, the dataset underwent several preprocessing steps
+        - o handle class imbalance, a binary target variable was created for normal (label 0) and abnormal heartbeats (label 1), including unknown beats
+        - Recordings were digitized at 360 samples per second per channel with an 11-bit resolution covering a 10 mV range
+        - Feature scaling was performed using MinMaxScaler()
+        - Given the large sample size of the MIT-BIH dataset, we downsampled data to the minority class of abnormal heartbeats
+        """
+        st.write(downsampling_text)
         st.write(f"Shape of the original dataset: {df.shape}")
         st.write(f"Shape of the downsampled dataset: {balanced_df.shape}")
         # Pie charts next to each other
