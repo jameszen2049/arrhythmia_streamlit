@@ -434,27 +434,26 @@ def mit_bih_dataset():
         ## Model Results Comparisons ##
                 
         st.write('### Model Performance Comparison')
-        # Barplot with selectbox 
+        # Plotting the bar chart without a slider
         bar_width = 0.15
         index = np.arange(len(models))
-        #selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
         fig, ax = plt.subplots(figsize=(12, 8))
-        #model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
         colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
-        #colors = ['lightblue', 'lightgreen', 'lightcoral', 'yellow']
+
         for i, model in enumerate(models):
-            alpha = 1 if i == model_index else 0.4
-            ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=alpha)
-            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=alpha)
-            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=alpha)
-#            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=alpha)
+            ax.bar(index[i] - 2*bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=1)
+            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=1)
+            ax.bar(index[i], recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=1)
+            ax.bar(index[i] + bar_width, recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=1)
+
         ax.set_xlabel('Model')
         ax.set_ylabel('Scores')
         ax.set_title('Comparison of Model Performances')
-        ax.set_xticks(index)    
-        ax.set_xticklabels(list(models.keys()))  # Use the keys of the dictionary
+        ax.set_xticks(index)
+        ax.set_xticklabels(list(models.keys()))
         ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall'], bbox_to_anchor=(1, 1), loc='upper left')
-        st.pyplot(fig)
+
+        t.pyplot(fig)
 
         st.write("### Comparison of Confusion Matrices")
         image_path = "Figure_18.png"  
