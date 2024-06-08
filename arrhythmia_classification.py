@@ -337,13 +337,12 @@ def mit_bih_dataset():
         st.write("## Exploratory Data Analysis and Preprocessing")
         st.write("### Data Exploration")
         exploration_text = """
-        - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
-        - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
-        - Early arrhythmia detection is pivotal for timely treatment
-        - Recent advancements in machine learning (ML) offer a promising future for automating arrhythmia detection through ECG analysis (Mincholé et al., 2019; Huda et al., 2020; Sakib, Fouda & Fadlullah, 2021)
-        - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
-        - Early detection is crucial for timely intervention and treatment (Zhang et al., 2017)
-        - We also aim for scalability and generalizability, contributing to a framework that can be effectively implemented across various healthcare settings and populations
+        - The MIT-BIH Arrhythmia Database includes 48 half-hour segments of two-channel ambulatory ECG recordings from 47 subjects between 1975 and 1979 by the BIH Arrhythmia Laboratory (Moody & Mark, 2001)
+        - Among these, 23 segments were randomly chosen from a pool of 4000 24-hour ambulatory ECG recordings at Boston's Beth Israel Hospital, while 25 segments were selected for less common yet clinically significant arrhythmias
+        - Recordings were digitized at 360 samples per second per channel with an 11-bit resolution covering a 10 mV range
+        - The dataset is freely available on PhysioNet (Goldberger et al., 2000)
+        - The dataset already underwent advanced feature engineering (Sakib, Fouda & Fadlullah, 2021) and consists of 100,689 samples and 34 columns, with 33 features pertinent to ECG analysis and one target column for arrhythmia classifications
+        - Features are split across two leads, Lead-II and Lead-V5, comprising 17 features each, contributing to the characterization of cardiac rhythms and morphologies: RR Intervals, Heartbeat Intervals, Heartbeat Amplitude Features, and Morphology Features
         """
         st.write(exploration_text)
         st.dataframe(df.head(10))
