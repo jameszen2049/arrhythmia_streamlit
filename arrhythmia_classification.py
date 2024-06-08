@@ -375,7 +375,7 @@ def mit_bih_dataset():
         st.write("### Downsampling to address Class Imbalance")
         downsampling_text = """
         - Before data augmentation, the dataset underwent several preprocessing steps
-        - o handle class imbalance, a binary target variable was created for normal (label 0) and abnormal heartbeats (label 1), including unknown beats
+        - To handle class imbalance, a binary target variable was created for normal (label 0) and abnormal heartbeats (label 1), including unknown beats
         - Recordings were digitized at 360 samples per second per channel with an 11-bit resolution covering a 10 mV range
         - Feature scaling was performed using MinMaxScaler()
         - Given the large sample size of the MIT-BIH dataset, we downsampled data to the minority class of abnormal heartbeats
@@ -397,6 +397,10 @@ def mit_bih_dataset():
     elif selected_page == "Modelling":
 #        st.write("## Systematic comparison of different Machine Learning Models for Arrhythmia Classification")
         st.write('### Hyperparameter space for Randomized Search ')
+        hyperparameter_text = """
+        - To optimize the hyperparamters, we utilized cross-validation and randomized search
+        """
+        st.write(hyperparameter_text)
         data = {
              "Model": ["Logistic Regression", "Random Forest", "Elastic Net", "Gradient Boosting", "AdaBoost", "XGBoost"],
             "Hyperparameter Space": [
@@ -433,7 +437,7 @@ def mit_bih_dataset():
         # Barplot with selectbox 
         bar_width = 0.15
         index = np.arange(len(models))
-        selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
+        #selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
         fig, ax = plt.subplots(figsize=(12, 8))
         model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
         colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
