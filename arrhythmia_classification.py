@@ -544,13 +544,33 @@ def mit_bih_dataset():
     elif selected_page == "Deep Learning":
         st.write("## Comparison of different Neural Network Architectures for Arrhythmia Classification")
         st.write('### Dense Neural Networks')
+        dnn_text = """
+        - In our initial trial, we utilized a neural network architecture with four dense layers
+        - The input layer handled inputs with a shape of (None, 32), corresponding to our dataset dimensions
+        - The architecture included hidden layers with 10, 8, 6, and 3 neurons, totaling 493 trainable parameters
+        - Training was conducted over 500 epochs using the adaptive Adam optimizer, ensuring stable and efficient weight updates
+        - We evaluated three activation functions: Tanh, ReLU, and Sigmoid
+        """
+        st.write(dnn_text)
         st.write("#### Confusion Matrices for DNNs with different Activation Functions")
         image_path = "Figure_19.png"  
         image = open(image_path, 'rb').read()
         st.image(image, caption='', use_column_width=True)
-        st.write("DNN with input dimensions (None, 32), three hidden dense layers of 10, 8, 6, and 3 neurons, (493 trainable parameters total), trained over 500 epochs with an adaptive Adam optimizer")
 
         st.write('### Artificial Neural Networks')
+        ann_text = """
+        - We implemented an artificial neural network (ANN) with three hidden dense layers to capture intricate data patterns while mitigating overfitting
+        - Each hidden layer had four neurons, tested with ReLU, Tanh, and Sigmoid activation functions
+        - The output layer used a Sigmoid function for binary classification
+        - Training involved 500 epochs with the adaptive Adam optimizer for stable weight updates
+        """
+        st.write(ann_text)
+        nnx_text = """
+        - For further refinement, we chose the best-performing neural network architecture, the DNN with ReLU activation, for additional trials
+        - We also experimented with different learning rates (0.1, 0.01, 0.001) to find the optimal balance between convergence speed and stability
+        - In our case, these experiments did not surpass the default Adam optimizer, which provided the best performance
+        - The default Adam optimizer balanced convergence speed and stability, proving most effective for our dataset and model architecture"""
+        st.write(nnx_text)        
         st.write("#### Confusion Matrices for ANNs with different Activation Functions")
         image_path = "Figure_20.png"  
         image = open(image_path, 'rb').read()
