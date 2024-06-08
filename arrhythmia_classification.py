@@ -639,12 +639,12 @@ def conclusions():
 
 def main():
     st.sidebar.title("Arrhythmia Classification Experiments on the MIT-BIH Dataset")
-    page = st.sidebar.radio("Comparisons of various machine learning and deep learning algorithms, Spring 2024", ["Introduction", "AI Prediction Performance", "Conclusions"])
+    page = st.sidebar.radio("Comparisons of various machine learning and deep learning algorithms, Spring 2024", ["Introduction", "AI Model Performance", "Conclusions"])
     if page == "Introduction":
         introduction()
 #    elif page == "UCI-Bilkent Dataset":
 #        uci_bilkent_dataset()
-    elif page == "AI Prediction Performance":
+    elif page == "AI Model Performance":
         mit_bih_dataset()
     elif page == "Conclusions":
         conclusions()
