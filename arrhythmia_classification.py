@@ -435,23 +435,22 @@ def mit_bih_dataset():
                 
         st.write('### Model Performance Comparison')
         # Plotting the bar chart without a slider
-        bar_width = 0.15
+        bar_width = 0.2
         index = np.arange(len(models))
-        fig, ax = plt.subplots(figsize=(12, 8))
-        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+        fig, ax = plt.subplots(figsize=(14, 8))
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
 
         for i, model in enumerate(models):
-            ax.bar(index[i] - 1.5 * bar_width, test_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=1)
-            ax.bar(index[i] - 0.5 * bar_width, train_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=1)
-            ax.bar(index[i] + 0.5 * bar_width, test_recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=1)
-            ax.bar(index[i] + 1.5 * bar_width, train_recall[i], bar_width, color=colors[3], edgecolor='black', hatch='.', alpha=1)
+            ax.bar(index[i] - bar_width, train_accuracy[i], bar_width, color=colors[0], edgecolor='black', hatch='/', alpha=1)
+            ax.bar(index[i], test_accuracy[i], bar_width, color=colors[1], edgecolor='black', hatch='\\', alpha=1)
+            x.bar(index[i] + bar_width, recall[i], bar_width, color=colors[2], edgecolor='black', hatch='x', alpha=1)
 
         ax.set_xlabel('Model')
         ax.set_ylabel('Scores')
         ax.set_title('Comparison of Model Performances')
         ax.set_xticks(index)
         ax.set_xticklabels(list(models.keys()))
-        ax.legend(['Test Accuracy', 'Train Accuracy', 'Test Recall', 'Train Recall'], bbox_to_anchor=(1, 1), loc='upper left')
+        ax.legend(['Train Accuracy', 'Test Accuracy', 'Recall'], bbox_to_anchor=(1, 1), loc='upper left')
 
         st.pyplot(fig)
 
