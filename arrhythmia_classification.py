@@ -439,7 +439,7 @@ def mit_bih_dataset():
         index = np.arange(len(models))
         #selected_model = st.select_slider("Select Model", options=list(models.keys()))  # Get the keys of the dictionary
         fig, ax = plt.subplots(figsize=(12, 8))
-        model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
+        #model_index = list(models.keys()).index(selected_model)  # Find the index of the selected model key
         colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
         #colors = ['lightblue', 'lightgreen', 'lightcoral', 'yellow']
         for i, model in enumerate(models):
