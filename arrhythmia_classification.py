@@ -577,7 +577,6 @@ def mit_bih_dataset():
         st.image(image, caption='', use_column_width=True)
         st.write("ANN with three hidden dense layers four neurons each, with a sigmoid activation function in the output layer for binary classification, trained over 500 epochs with adaptive Adam optimizer")
 
-
         st.write("### Precision-Recall Curves for DNN and ANN Trials")
         image_path = "Figure_22.png"  
         image = open(image_path, 'rb').read()
@@ -647,19 +646,27 @@ def explorations():
     st.write(explorations_text)
     
 def relevance():
-    st.header("Relevance")
+    st.header("References")
     relevance_text = """
-    - Model studies demonstrate significant potential for deployment in clinical settings, such as hospitals and healthcare facilities
-    - Robust performance and ability to minimize false negatives of models like Gradient Boosting, XGBoost, and Random Forest, makes them valuable tools in arrhythmia diagnosis
-    - Interpretable models enhance transparency and understanding, facilitating collaboration between machine learning experts and healthcare professionals
-    - End user devices like smartwatches or portable ECG trackers could provide preventive care
-    - Scalability and individualization possibilities can improve patient care over populations, applications or time
+    - Das, M. K., & Ari, S. (2014). ECG Beats Classification Using Mixture of Features. International Scholarly Research Notices, 2014, 178436. https://doi.org/10.1155/2014/178436
+    - Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., & Stanley, H. E. (2000). PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation, 101(23), e215. https://doi.org/10.1161/01.cir.101.23.e215
+    - Guvenir, H. A., Acar, B., Demiroz, G., & Cekin, A. (1997). A Supervised Machine Learning Algorithm for Arrhythmia Analysis. Proceedings of the Computers in Cardiology, 433-436.
+    - Huda, N., Khan, S., Abid, R., Shuvo, S. B., Labib, M. M., & Hasan, T. (2020). A Low-cost, Low-energy Wearable ECG System with Cloud-Based Arrhythmia Detection. MedRxiv. https://doi.org/10.1101/2020.08.30.20184770
+    - Moody, G. B., & Mark, R. G. (2001). The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45-50.
+    - Mincholé, A., Camps, J., Lyon, A., & Rodríguez, B. (2019). Machine learning in the electrocardiogram. Journal of Electrocardiology, 57, 61–64. https://doi.org/10.1016/j.jelectrocard.2019.08.008
+    - Lawless, S. T. (1994). Crying wolf: False alarms in a pediatric intensive care unit. Critical Care Medicine, 22, 981–985. PMID: 8205831
+    - Lome, S. ECG Basics. Learn the Heart. Healio. https://www.healio.com/cardiology/learn-the-heart/ecg-review/ecg-interpretation-tutorial/qrs-complex
+    - Ramirez-Santana, M. (2018). Limitations and Biases in Cohort Studies. InTech. https://doi.org/10.5772/intechopen.74324
+    - Sakib, S., Fouda, M. M., & Fadlullah, Z. M. (2021). Harnessing Artificial Intelligence for Secure ECG Analytics at the Edge for Cardiac Arrhythmia Classification. Secure Edge Computing, 1, 137-153. CRC Press. ISBN: 9781003028635
+    - Tachycardia (Fast Heart Rate) in Children. Ann & Robert H. Lurie Children’s Hospital of Chicago. https://www.luriechildrens.org/en/specialties-conditions/tachycardia/
+    - Tan, K. F., Chan, K. L., & Choi, K. (2000). Detection of the QRS complex, P wave and T wave in electrocardiogram. 2000 First International Conference Advances in Medical Signal and Information Processing (IEE Conf. Publ. No. 476), 41-47.
+    - Wang, D., Zhang, L., Wang, Z.-Y., Zhang, Z.-Y., & Wang, Y. (2017). The missed diagnosis of aortic dissection in patients with acute myocardial infarction: A disastrous event. Journal of Thoracic Disease, 9(7), E636-E639. https://doi.org/10.21037/jtd.2017.06.103
     """
     st.write(relevance_text)
     
 def conclusions():
     st.title("Conclusions")
-    selected_page = st.sidebar.selectbox("Select Page", ["Summary", "Future Explorations", "Relevance"])
+    selected_page = st.sidebar.selectbox("Select Page", ["Summary", "Future Explorations", "References"])
     if selected_page == "Summary":
         summary()
     elif selected_page == "Future Explorations":
