@@ -40,26 +40,30 @@ def introduction():
     - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
     - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
     - Early arrhythmia detection is pivotal for timely treatment
+    - Recent advancements in machine learning (ML) offer a promising future for automating arrhythmia detection through ECG analysis (Mincholé et al., 2019; Huda et al., 2020; Sakib, Fouda & Fadlullah, 2021)
     - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
+    - Early detection is crucial for timely intervention and treatment (Zhang et al., 2017)
+    - We also aim for scalability and generalizability, contributing to a framework that can be effectively implemented across various healthcare settings and populations
     """
     st.write(introduction_text)
     st.write("## Project Methodology")
         # Step 1
     st.subheader("Step 1: Preprocessing and Feature Engineering")
     st.write("""
-    - This involves preprocessing the data, engineering features, and downsampling to handle class imbalance
+    - Comprehensive preprocessing, including standardization, to ensure consistency and remove biases
+    - Techniques like principal component analysis (PCA) to enhance ECG signal quality and capture relevant patterns
     """)
     # Step 2
     st.subheader("Step 2: Model Selection")
     st.write("""
-    - We select baseline models and more sophisticated models such as bagging and boosting
-    - We use techniques like GridsearchCV and Randomized Search for hyperparameter tuning 
-    - We construct deep learning models such as Dense Neural Networks and Artificial Neural Networks
+    - Baseline models and more sophisticated models such as bagging and boosting
+    - Techniques like GridsearchCV and Randomized Search for hyperparameter tuning 
+    - Deep learning models such as Dense Neural Networks and Artificial Neural Networks
     """)
     # Step 3
     st.subheader("Step 3: Performance Evaluation")
     st.write("""
-    - This involves systematically evaluating model performance based on metrics like accuracy and recall. 
+    - Thorough analysis of performance metrics like precision, recall, F1-score, and receiver operating characteristic (ROC) curves to assess model effectiveness
     - A main focus is placed on the number of undetected arrhythmia cases as evident in number of false negatives
     """)
 
@@ -332,6 +336,15 @@ def mit_bih_dataset():
     if selected_page == "Exploration and Preprocessing":
         st.write("## Exploratory Data Analysis and Preprocessing")
         st.write("### Data Exploration")
+        introduction_text = """
+    - Arrhythmia poses a significant challenge in cardiovascular medicine affecting around 2% of the population and causing thousands of deaths every year
+    - It is marked by irregular heart rhythms with severe health implications like stroke and heart failure
+    - Early arrhythmia detection is pivotal for timely treatment
+    - Recent advancements in machine learning (ML) offer a promising future for automating arrhythmia detection through ECG analysis (Mincholé et al., 2019; Huda et al., 2020; Sakib, Fouda & Fadlullah, 2021)
+    - Our main goal is to develop a machine learning model for accurate differentiation between cardiac arrhythmia presence and absence
+    - Early detection is crucial for timely intervention and treatment (Zhang et al., 2017)
+    - We also aim for scalability and generalizability, contributing to a framework that can be effectively implemented across various healthcare settings and populations
+    """
         st.dataframe(df.head(10))
         st.write(df.shape)
         st.dataframe(df.describe())
@@ -631,7 +644,7 @@ def main():
         introduction()
 #    elif page == "UCI-Bilkent Dataset":
 #        uci_bilkent_dataset()
-    elif page == "MIT-BIH Dataset":
+    elif page == "AI Prediction Performance":
         mit_bih_dataset()
     elif page == "Conclusions":
         conclusions()
