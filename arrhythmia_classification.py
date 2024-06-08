@@ -433,7 +433,7 @@ def mit_bih_dataset():
 
         ## Model Results Comparisons ##
                 
-        st.write('### Model Performance Comparison')
+        #st.write('### Model Performance Comparison')
         # Plotting the bar chart without a slider
         bar_width = 0.2
         index = np.arange(len(models))
@@ -462,7 +462,10 @@ def mit_bih_dataset():
         ## Individual Model Results ##
 
         st.title('Model Results')
-
+        results_text = """
+        - By selecting the model below, the chosen model will run a live prediction on the test dataset and display the performance
+        """
+        st.write(results_text)
         train_data_size = len(df)
         test_data_size = len(input_data)
         st.write('Size of Test Dataset:', test_data_size)
@@ -565,9 +568,10 @@ def mit_bih_dataset():
 def summary():
     st.header("Summary")
     summary_text = """
+    - Optimizing for recall aligned with our objective of minimizing false negatives
     - Gradient Boosting achieved best recall with a high accuracy of 98%
     - DNN and ANN achieved accuracies ranging from 95% to 96%
-    - Deep Learning models got outperformed by simpler ensemble models
+    - Deep Learning models were outperformed by simpler ensemble models
     - One possible explanation for this discrepancy could be the dataset's size and complexity
     """
 
@@ -614,12 +618,11 @@ def summary():
 def explorations():
     st.header("Future Explorations")
     explorations_text = """
-    - Further refinement through hyperparameter tuning
-    - Usage of advanced deep learning methodologies such as encoding-decoding techniques
+    - Exploration of additional advanced deep learning methodologies such as encoding-decoding techniques
     - Exploring different sampling strategies like including patient data from other hospitals or using GAN's 
-    - Consultation with cardiologists and machine learning engineers for further improvement
-    - Classification of more nuanced heartbeat conditions
-    - Optimizing pre-processing for better applicability in real life data
+    - Consultation with cardiologists for further collaborative exploration and optimization
+    - Exploration of the classification of more nuanced heartbeat conditions
+    - Exploring scalability detached from computational requirements, e.g. MiniML
     """
     st.write(explorations_text)
     
